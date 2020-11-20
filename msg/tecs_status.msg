@@ -22,6 +22,14 @@ float32 energy_distribution_error
 float32 total_energy_rate_error
 float32 energy_distribution_rate_error
 
+float32 kinetic_energy_estimate
+float32 kinetic_energy_sp
+float32 potential_energy_estimate
+float32 potential_energy_sp
+float32 total_energy_sp
+float32 total_energy_estimate
+float32 total_energy_balance_sp
+
 float32 throttle_integ
 float32 pitch_integ
 

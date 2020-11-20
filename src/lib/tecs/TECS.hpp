@@ -152,6 +152,15 @@ public:
 	float throttle_integ_state() { return _throttle_integ_state; }
 	float pitch_integ_state() { return _pitch_integ_state; }
 
+	//Rajouté
+	float SKE_estimate() { return _SKE_estimate; }
+	float SKE_setpoint() { return _SKE_setpoint; }
+	float SPE_estimate() { return _SPE_estimate; }
+	float SPE_setpoint() { return _SPE_setpoint; }
+	float STE_estimate() { return _STE_estimate; }
+	float STE_setpoint() { return _STE_setpoint; }
+	float SEB_setpoint() { return _SEB_setpoint; }
+
 	/**
 	 * Handle the altitude reset
 	 *
@@ -256,9 +265,12 @@ private:
 
 	// specific energy error quantities
 	float _STE_error{0.0f};						///< specific total energy error (m**2/sec**2)
+	float _STE_estimate{0.0f};					///< specific total energy estimate (m**2/sec**2) Rajouté
+	float _STE_setpoint{0.0f};					///< specific total energy setpoint (m**2/sec**2) Rajouté
 	float _STE_rate_error{0.0f};					///< specific total energy rate error (m**2/sec**3)
 	float _SEB_error{0.0f};						///< specific energy balance error (m**2/sec**2)
 	float _SEB_rate_error{0.0f};					///< specific energy balance rate error (m**2/sec**3)
+	float _SEB_setpoint{0.0f};					///< specific energy balance setpoint(m**2/sec**2) Rajouté
 
 	// time steps (non-fixed)
 	float _dt{DT_DEFAULT};						///< Time since last update of main TECS loop (sec)

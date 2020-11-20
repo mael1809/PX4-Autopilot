@@ -339,6 +339,15 @@ FixedwingPositionControl::tecs_status_publish()
 	t.throttle_integ = _tecs.throttle_integ_state();
 	t.pitch_integ = _tecs.pitch_integ_state();
 
+		//Ajout des signaux
+	t.kinetic_energy_estimate = _tecs.SKE_estimate();
+	t.kinetic_energy_sp = _tecs.SKE_setpoint();
+	t.potential_energy_estimate = _tecs.SPE_estimate();
+	t.potential_energy_sp = _tecs.SPE_setpoint();
+	t.total_energy_estimate = _tecs.STE_estimate();
+	t.total_energy_sp = _tecs.STE_setpoint();
+	t.total_energy_balance_sp = _tecs.SEB_setpoint();
+	
 	t.timestamp = hrt_absolute_time();
 
 	_tecs_status_pub.publish(t);

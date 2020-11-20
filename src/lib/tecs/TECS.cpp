@@ -266,6 +266,10 @@ void TECS::_update_throttle_setpoint(const float throttle_cruise, const matrix::
 	// Calculate total energy error
 	_STE_error = _SPE_setpoint - _SPE_estimate + _SKE_setpoint - _SKE_estimate;
 
+	// Calculate total energy estimate and setpoint rajouté
+	_STE_estimate = _SPE_estimate + _SKE_estimate;
+	_STE_setpoint = _SPE_setpoint + _SKE_setpoint;
+
 	// Calculate demanded rate of change of total energy, respecting vehicle limits
 	float STE_rate_setpoint = constrain((_SPE_rate_setpoint + _SKE_rate_setpoint), _STE_rate_min, _STE_rate_max);
 
@@ -422,7 +426,8 @@ void TECS::_update_pitch_setpoint()
 
 	// Calculate derivative from change in climb angle to rate of change of specific energy balance
 	float climb_angle_to_SEB_rate = _tas_state * _pitch_time_constant * CONSTANTS_ONE_G;
-
+	_SEB_setpoint = SEB_setpoint; // Rajouté
+	
 	if (_integrator_gain > 0.0f) {
 		// Calculate pitch integrator input term
 		float pitch_integ_input = _SEB_error * _integrator_gain;
